@@ -10,13 +10,13 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.example.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'your_email@example.com';
-    $mail->Password = 'your_password';
+    $mail->Username = 'tenpmain@example.com';
+    $mail->Password = 'P8096796582@n';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     // Recipients
-    $mail->setFrom('your_email@example.com', 'Mailer');
+    $mail->setFrom('hackerhacked6699@example.com', 'Mailer');
     $mail->addAddress($to);
 
     // Content
